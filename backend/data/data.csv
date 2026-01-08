@@ -1,0 +1,11 @@
+date,campaign_id,campaign_name,platform,spend,impressions,clicks,conversions
+2025-01-01,CMP-001,Summer_Clearance [Vehicle],FB,420.5,"25,400",840,22
+2025-01-01,CMP-002,Tech_Expo_2025 [Electronics],Google,150,"45,000",310,4
+2025-01-02,CMP-003,Family_SUV_Promo [Vehicle],Google,85.2,"4,200",150,12
+2025-01-02,CMP-001,Summer_Clearance [Vehicle],IG,310,"18,900",620,15
+2025-01-03,CMP-004,Smart_Home_Bundle [Electronics][Home],TikTok,600,"85,000","2,400",-1
+2025-01-03,CMP-002,Tech_Expo_2025 [Electronics],FB,110.45,"12,000",205,2
+2025-01-04,CMP-005,Living_Room_Refresh [Home],Internal,45,"5,000",850,38
+2025-01-04,CMP-003,Family_SUV_Promo [Vehicle],Google,92.1,-1,180,14
+2025-01-05,CMP-004,Smart_Home_Bundle [Electronics][Home],IG,550,"72,000","1,950",33
+2025-01-05,CMP-001,Summer_Clearance [Vehicle],FB,380,"22,100",790,20
