@@ -1,12 +1,14 @@
 {
-  "group_by": ["date", "platform"],
-  "metrics": ["spend", "clicks", "impressions", "ctr"],
+  "group_by": ["date", "campaign_id"],
+  "metrics": ["spend", "clicks"],
   "aggregation": {
-    "spend": "sum",
-    "clicks": "sum",
-    "impressions": "sum"
+      
   },
-  "time_bucket": "daily",
-  "rolling_days": null,
+  "time_bucket": "",
+  "rolling": {
+    "window": 3,
+    "metrics": ["spend"],
+    "unit": "D"
+  },
   "preview": true
 }
