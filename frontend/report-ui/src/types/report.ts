@@ -14,7 +14,13 @@ export interface ReportConfig {
     preview: boolean
 }
 
+export interface SchemaColumn {
+    name: string
+    type: "date" | "number" | "string"
+}
+
 export interface PreviewResponse {
+    result_schema: SchemaColumn[]
     columns: string[]
     rows: Record<string, any>[]
     total_rows: number

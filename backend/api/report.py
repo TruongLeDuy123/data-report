@@ -1,12 +1,12 @@
 from fastapi import APIRouter, UploadFile, File, Body
-from typing import Dict, Any
 import pandas as pd
 import io, json
 from fastapi.responses import StreamingResponse
 
 from report.build_report import build_report
+from schemas.report import infer_schema
 
-router = APIRouter(prefix="/report", tags=["Report"])
+router = APIRouter(prefix="/reports", tags=["Report"])
 
 @router.post("/preview")
 async def preview_report(
@@ -14,18 +14,21 @@ async def preview_report(
     file: UploadFile = File(...)
 ):
     config_dict = json.loads(config)
-
     contents = await file.read()
 
     df = pd.read_csv(io.BytesIO(contents))
 
-    result = build_report(df, config_dict)
+    input_schema = infer_schema(df)
 
+    result = build_report(df, config_dict)
+    result_schema = infer_schema(result)
     return {
+        "result_schema": result_schema,
         "columns": list(result.columns),
         "rows": result.head(20).to_dict(orient="records"),
         "total_rows": len(result)
     }
+
 
 
 @router.post("/export")

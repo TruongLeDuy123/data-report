@@ -8,7 +8,7 @@ export async function previewReport(
     const form = new FormData()
     form.append("file", file)
     form.append("config", JSON.stringify(config))
-    const res = await fetch(`${BASE_URL}/report/preview`, {
+    const res = await fetch(`${BASE_URL}/reports/preview`, {
         method: "POST",
         body: form
     })
@@ -26,7 +26,7 @@ export async function exportReport(
     form.append("file", file)
     form.append("config", JSON.stringify(config))
 
-    const res = await fetch(`${BASE_URL}/report/export`, {
+    const res = await fetch(`${BASE_URL}/reports/export`, {
         method: "POST",
         body: form
     })

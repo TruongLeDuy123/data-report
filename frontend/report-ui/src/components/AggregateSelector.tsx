@@ -11,7 +11,7 @@ const AGGS: AggregationType[] = ["sum", "mean", "min", "max"]
 export function AggregationSelector({ options, value, onChange }: Props) {
     return (
         <>
-            <h3>Aggregation</h3>
+            <h3 className="text-lg font-semibold">Aggregation</h3>
             {options.map(m => (
                 <div key={m}>
                     {m}

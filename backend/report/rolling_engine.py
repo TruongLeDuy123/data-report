@@ -21,17 +21,16 @@ def apply_rolling(
     df[date_col] = pd.to_datetime(df[date_col])
 
     # Aggregate per day first
+    group_cols = [*group_keys, date_col]
     df = (
         df
-        .groupby([date_col] + group_keys, as_index=False)
+        .groupby(group_cols, as_index=False)
         .sum(numeric_only=True)
-        .sort_values([*group_keys, date_col])
     )
-
+    grouped = df.groupby(group_keys)
     for m in metrics:
         rolled = (
-            df
-            .groupby(group_keys)
+            grouped
             .rolling(f"{window}D", on=date_col)[m]
             .sum()
             .reset_index(level=group_keys, drop=True)

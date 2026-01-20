@@ -1,14 +1,21 @@
-# from pydantic import BaseModel
-# from typing import List, Dict, Optional
+import pandas as pd
 
-# class RollingConfig(BaseModel):
-#     type: str  # "cumulative" | "window"
-#     window: Optional[int] = None
-#     metrics: List[str]
+def infer_schema(df: pd.DataFrame):
+    schema = []
 
-# class ReportConfig(BaseModel):
-#     group_by: List[str]
-#     metrics: List[str]
-#     aggregation: Dict[str, str]
-#     time_bucket: Optional[str] = None  # daily | weekly | monthly
-#     rolling: Optional[RollingConfig] = None
+    for col in df.columns:
+        dtype = df[col].dtype
+
+        if pd.api.types.is_datetime64_any_dtype(dtype):
+            col_type = "date"
+        elif pd.api.types.is_numeric_dtype(dtype):
+            col_type = "number"
+        else:
+            col_type = "string"
+
+        schema.append({
+            "name": col,
+            "type": col_type
+        })
+
+    return schema
